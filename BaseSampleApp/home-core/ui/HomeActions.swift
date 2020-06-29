@@ -1,0 +1,2 @@
+public protocol HomeActions: SplashNavigation {
+}
