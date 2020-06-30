@@ -2,7 +2,7 @@ import Foundation
 
 extension LiveData {
     
-    func bind<V: NSObject>(view: V, setter: @escaping (T) -> Void) {
+    func bind<V: NSObject>(lifecycleOwner: LifecycleOwner, view: V, setter: @escaping (T) -> Void) {
         setter(value)
         let observer = LiveDataObserver<T>()
         observer.callback = {[weak view, weak self] value in
@@ -15,6 +15,6 @@ extension LiveData {
             }
             setter(value)
         }
-        addObserver(observer: observer)
+        addObserver(lifecycleOwner: lifecycleOwner, observer: observer)
     }
 }

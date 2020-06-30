@@ -30,7 +30,7 @@ public class GalleryViewController: BackableViewController<GalleryActionsImpl, G
         guard let viewModel = viewModel else {
             return
         }
-        label.bindText(liveData: viewModel.text)
+        label.bindText(lifecycleOwner: self, liveData: viewModel.text)
     }
 }
 

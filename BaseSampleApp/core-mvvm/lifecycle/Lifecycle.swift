@@ -6,8 +6,17 @@ import Foundation
 //}
 
 public class Lifecycle: NSObject {
+    
+    public enum State {
+        case initialized
+        case created
+        case started
+        case resumed
+        case destroyed
+    }
 
     weak var owner: LifecycleOwner?
+    private(set) public var state = State.initialized
     private var observers = [LifecycleObserver]()
 
     open func onLoadView() {
@@ -15,6 +24,7 @@ public class Lifecycle: NSObject {
     }
 
     open func onViewDidLoad() {
+        state = .created
         observers.forEach{$0.onViewDidLoad?()}
     }
 
@@ -31,6 +41,7 @@ public class Lifecycle: NSObject {
     }
 
     open func onViewDidAppear() {
+        state = .resumed
         observers.forEach{$0.onViewDidAppear?()}
     }
 
@@ -39,6 +50,7 @@ public class Lifecycle: NSObject {
     }
 
     open func onViewDidDisappear() {
+        state = .destroyed
         observers.forEach{$0.onViewDidDisappear?(owner)}
     }
 

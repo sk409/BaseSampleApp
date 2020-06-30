@@ -34,14 +34,6 @@ public class EventDispatcher<ListenerType>: NSObject {
         lifecycleOwner.lifecycle.addObserver(lifecycleObserver)
     }
     
-    public func bind(
-        listener: ListenerType
-    ) {
-        currentListener = listener
-        pendingEvents.forEach{$0(listener)}
-        pendingEvents.removeAll()
-    }
-    
     public func dispatchEvent(event: @escaping (ListenerType) -> Void) {
         guard let listener = currentListener else {
             pendingEvents.append(event)

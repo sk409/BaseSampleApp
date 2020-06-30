@@ -2,41 +2,80 @@ import Foundation
 
 open class LiveData<T>: NSObject {
     
-    private var observers = [LiveDataObserver<T>]()
+    private class ObserverHolder {
+        let lifecycleOwner: LifecycleOwner
+        let lifecycleObserver: LifecycleObserver
+        var observers = [LiveDataObserver<T>]()
+        
+        init(lifecycleOwner: LifecycleOwner, lifecycleObserver: LifecycleObserver) {
+            self.lifecycleOwner = lifecycleOwner
+            self.lifecycleObserver = lifecycleObserver
+        }
+    }
+    
+    private var observerHolders = [ObserverHolder]()
     
     fileprivate var rawValue: T {
         didSet {
-            observers.forEach{$0.invoke(value: rawValue)}
+            invokeObserversIfLivecycleIsValid()
         }
     }
     
     public var value: T
     
-    init(initialValue: T) {
+    public init(_ initialValue: T) {
         rawValue = initialValue
         value = rawValue
     }
     
-    public func addObserver(observer: LiveDataObserver<T>) {
-        observer.invoke(value: value)
-        observers.append(observer)
-    }
-    
-    public func removeObserver(
-        lifecycleOwner: LifecycleOwner,
-        observer: LiveDataObserver<T>
-    ) {
-        removeObserver(observer: observer)
+    public func addObserver(lifecycleOwner: LifecycleOwner, observer: LiveDataObserver<T>) {
+        if LiveData.isLifecycleValid(lifecycleOwner.lifecycle) {
+            observer.invoke(value: value)
+        }
+        if let observerHolder = observerHolders.first(where: {$0.lifecycleOwner === lifecycleOwner}) {
+            observerHolder.observers.append(observer)
+        } else {
+            let lifecycleObserver = LifecycleObserver()
+            lifecycleObserver.onViewDidDisappear = { _ in
+                self.removeAllObservers(lifecycleOwner: lifecycleOwner)
+            }
+            lifecycleOwner.lifecycle.addObserver(lifecycleObserver)
+            observerHolders.append(ObserverHolder(lifecycleOwner: lifecycleOwner, lifecycleObserver: lifecycleObserver))
+        }
     }
     
     public func removeObserver(observer: LiveDataObserver<T>) {
-        guard let index = observers.firstIndex(where: {$0 === observer}) else {
-            return
+        for observerHolder in observerHolders {
+            guard let index = observerHolder.observers.firstIndex(where: {$0 === observer}) else {
+                continue
+            }
+            observerHolder.lifecycleOwner.lifecycle.removeObserver(observerHolder.lifecycleObserver)
+            observerHolder.observers.remove(at: index)
+            break
         }
-        observers.remove(at: index)
     }
     
     public func removeAllObservers(lifecycleOwner: LifecycleOwner) {
+        guard let index = observerHolders.firstIndex(where: {$0.lifecycleOwner === lifecycleOwner}) else {
+            return
+        }
+        let observerHolder = observerHolders[index]
+        observerHolder.lifecycleOwner.lifecycle.removeObserver(observerHolder.lifecycleObserver)
+        observerHolders.remove(at: index)
+    }
+    
+    private static func isLifecycleValid(_ lifecycle: Lifecycle) -> Bool {
+        let lifecycleState = lifecycle.state
+        return lifecycleState == .started || lifecycleState == .resumed
+    }
+    
+    private func invokeObserversIfLivecycleIsValid() {
+        observerHolders.forEach{ observerHolder in
+            guard LiveData.isLifecycleValid(observerHolder.lifecycleOwner.lifecycle) else {
+                return
+            }
+            observerHolder.observers.forEach { $0.invoke(value: value) }
+        }
     }
 }
 

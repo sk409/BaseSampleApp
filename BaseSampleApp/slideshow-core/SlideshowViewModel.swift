@@ -1,7 +1,7 @@
 
 public class SlideshowViewModel: BackableViewModel<SlideshowActionsImpl> {
     
-    private let _text = MutableLiveData(initialValue: "This is slideshow ViewController")
+    private let _text = MutableLiveData("This is slideshow ViewController")
     
     public let text: LiveData<String>
     

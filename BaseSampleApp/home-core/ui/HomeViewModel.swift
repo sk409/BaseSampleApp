@@ -4,7 +4,7 @@ public class HomeViewModel: ViewModel {
     
     private let loadHomeUseCase: LoadHomeUseCase
     
-    private let _text = MutableLiveData(initialValue: "")
+    private let _text = MutableLiveData("")
     
     public let text: LiveData<String>
     

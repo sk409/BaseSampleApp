@@ -1,7 +1,7 @@
 
 public class GalleryViewModel: BackableViewModel<GalleryActionsImpl> {
     
-    private let _text = MutableLiveData(initialValue: "This is gallery ViewController")
+    private let _text = MutableLiveData("This is gallery ViewController")
     
     let text: LiveData<String>
     

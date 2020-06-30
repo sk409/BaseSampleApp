@@ -31,7 +31,7 @@ public class SlideshowViewController: BackableViewController<SlideshowActionsImp
         guard let viewModel = viewModel else {
             return
         }
-        label.bindText(liveData: viewModel.text)
+        label.bindText(lifecycleOwner: self, liveData: viewModel.text)
     }
     
     //============================================================
