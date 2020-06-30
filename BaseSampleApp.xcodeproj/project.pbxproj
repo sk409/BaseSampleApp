@@ -91,9 +91,8 @@
 		536F89F0249A5691004F1ED8 /* ShowSlideshowUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536F89EF249A5691004F1ED8 /* ShowSlideshowUseCase.swift */; };
 		536F89F6249A7855004F1ED8 /* SlideshowActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536F89F5249A7855004F1ED8 /* SlideshowActions.swift */; };
 		536F89FA249A7B9C004F1ED8 /* SlideshowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536F89F9249A7B9C004F1ED8 /* SlideshowViewModel.swift */; };
-		5383326024A89F38009ACF98 /* AppLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5383325F24A89F38009ACF98 /* AppLauncher.swift */; };
-		5383326224A89FCD009ACF98 /* AppLauncherImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5383326124A89FCD009ACF98 /* AppLauncherImpl.swift */; };
 		5383326424AA33D7009ACF98 /* LifecycleObservableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5383326324AA33D7009ACF98 /* LifecycleObservableViewController.swift */; };
+		53B103C024AB6F260069B1FD /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B103BF24AB6F260069B1FD /* AppManager.swift */; };
 		53B2AD04249AFF6C00001F9B /* GalleryActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2AD03249AFF6C00001F9B /* GalleryActions.swift */; };
 		53B2AD06249AFF8700001F9B /* GalleryActionsImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2AD05249AFF8700001F9B /* GalleryActionsImpl.swift */; };
 		53B2AD08249AFFC000001F9B /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2AD07249AFFC000001F9B /* GalleryViewModel.swift */; };
@@ -210,9 +209,8 @@
 		536F89EF249A5691004F1ED8 /* ShowSlideshowUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSlideshowUseCase.swift; sourceTree = "<group>"; };
 		536F89F5249A7855004F1ED8 /* SlideshowActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideshowActions.swift; sourceTree = "<group>"; };
 		536F89F9249A7B9C004F1ED8 /* SlideshowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideshowViewModel.swift; sourceTree = "<group>"; };
-		5383325F24A89F38009ACF98 /* AppLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLauncher.swift; sourceTree = "<group>"; };
-		5383326124A89FCD009ACF98 /* AppLauncherImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLauncherImpl.swift; sourceTree = "<group>"; };
 		5383326324AA33D7009ACF98 /* LifecycleObservableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifecycleObservableViewController.swift; sourceTree = "<group>"; };
+		53B103BF24AB6F260069B1FD /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		53B2AD03249AFF6C00001F9B /* GalleryActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryActions.swift; sourceTree = "<group>"; };
 		53B2AD05249AFF8700001F9B /* GalleryActionsImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryActionsImpl.swift; sourceTree = "<group>"; };
 		53B2AD07249AFFC000001F9B /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
@@ -309,8 +307,7 @@
 				533C1A422499E5720021E6B3 /* ViewModelFactoryImpl.swift */,
 				533C1A982499E5870021E6B3 /* AppDelegate.swift */,
 				533C1A992499E5870021E6B3 /* SceneDelegate.swift */,
-				5383325F24A89F38009ACF98 /* AppLauncher.swift */,
-				5383326124A89FCD009ACF98 /* AppLauncherImpl.swift */,
+				53B103BF24AB6F260069B1FD /* AppManager.swift */,
 				533C1A012499E53E0021E6B3 /* Assets.xcassets */,
 				533C1A032499E53E0021E6B3 /* LaunchScreen.storyboard */,
 				533C1A062499E53E0021E6B3 /* Info.plist */,
@@ -1020,6 +1017,7 @@
 				53B2AD04249AFF6C00001F9B /* GalleryActions.swift in Sources */,
 				533C1AA62499E7400021E6B3 /* LoadHomeUseCase.swift in Sources */,
 				533C1AA12499E6FA0021E6B3 /* EventParameters.swift in Sources */,
+				53B103C024AB6F260069B1FD /* AppManager.swift in Sources */,
 				533C1A792499E5720021E6B3 /* LoadSplashUseCase.swift in Sources */,
 				533C1A7A2499E5720021E6B3 /* SplashRepository.swift in Sources */,
 				536F89C8249A2AB4004F1ED8 /* ShowTutorialUseCase.swift in Sources */,
@@ -1047,7 +1045,6 @@
 				533C1A872499E5720021E6B3 /* ViewModelProvider.swift in Sources */,
 				533C1A722499E5720021E6B3 /* GoogleAnalyticRepositoryImpl.swift in Sources */,
 				533C1A9A2499E5870021E6B3 /* AppDelegate.swift in Sources */,
-				5383326224A89FCD009ACF98 /* AppLauncherImpl.swift in Sources */,
 				536F89F0249A5691004F1ED8 /* ShowSlideshowUseCase.swift in Sources */,
 				533C1A882499E5720021E6B3 /* ViewModelStore.swift in Sources */,
 				536F89DA249A5019004F1ED8 /* SlideMenuViewDataSource.swift in Sources */,
@@ -1073,7 +1070,6 @@
 				533C1A822499E5720021E6B3 /* TutorialShowHomeUseCase.swift in Sources */,
 				53B2AD08249AFFC000001F9B /* GalleryViewModel.swift in Sources */,
 				536F89F6249A7855004F1ED8 /* SlideshowActions.swift in Sources */,
-				5383326024A89F38009ACF98 /* AppLauncher.swift in Sources */,
 				533C1A7D2499E5720021E6B3 /* TutorialViewModel.swift in Sources */,
 				536F89DB249A5019004F1ED8 /* SlideMenuViewDelegate.swift in Sources */,
 				536F89D4249A5019004F1ED8 /* SlideMenuSectionItemsContainerView.swift in Sources */,

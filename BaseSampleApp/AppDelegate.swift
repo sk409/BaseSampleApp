@@ -6,17 +6,20 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var appLauncher: AppLauncher = AppLauncherImpl()
+    
+    private lazy var appManager = AppManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
         
+        appManager.setRootScreen(appDelegate: self)
+        
         if #available(iOS 13.0, *) {
             // do nothing
         } else {
             window = UIWindow()
-            appLauncher.launch(window: window!)
+            
         }
         
         return true
