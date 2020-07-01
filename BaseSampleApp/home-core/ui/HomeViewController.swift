@@ -40,7 +40,6 @@ public class HomeViewController: MvvmViewController<HomeViewModel> {
     private let viewControllerFactory: ViewControllerFactory
     
     public init(viewModelFactory: ViewModelFactory, viewControllerFactory: ViewControllerFactory) {
-        slideMenuViewModel = viewModelFactory.create(SlideMenuViewModel.self)
         self.viewModelFactory = viewModelFactory
         self.viewControllerFactory = viewControllerFactory
 //        let pod = Bundle(for: TutorialViewController.self)
@@ -60,6 +59,7 @@ public class HomeViewController: MvvmViewController<HomeViewModel> {
     }
     
     public override func viewWillAppear(_ animated: Bool) {
+        slideMenuViewModel = viewModelFactory.create(SlideMenuViewModel.self)
         viewModel = viewModelFactory.create(HomeViewModel.self)
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
