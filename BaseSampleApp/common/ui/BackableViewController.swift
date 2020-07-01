@@ -3,8 +3,8 @@ import UIKit
 open class BackableViewController<A: BackNavigation, VM: BackableViewModel<A>>: MvvmViewController<VM>, BackNavigation
 {
     
-    public init(nibName: String, bundle: Bundle?, viewModel: VM?) {
-        super.init(nibName: nibName, bundle: bundle, viewModel: viewModel)
+    public init(nibName: String, bundle: Bundle?) {
+        super.init(nibName: nibName, bundle: bundle)
     }
     
     required public init?(coder: NSCoder) {

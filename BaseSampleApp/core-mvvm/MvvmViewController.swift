@@ -4,8 +4,7 @@ open class MvvmViewController<VM: ViewModel>: LifecycleObservableViewController 
     
     public var viewModel: VM?
     
-    public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, viewModel: VM?) {
-        self.viewModel = viewModel
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -13,8 +12,8 @@ open class MvvmViewController<VM: ViewModel>: LifecycleObservableViewController 
         fatalError("init(coder:) has not been implemented")
     }
     
-    open override func viewDidLoad() {
-        super.viewDidLoad()
+    open override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupViewModel(viewModel)
         setupDataBinding()
     }

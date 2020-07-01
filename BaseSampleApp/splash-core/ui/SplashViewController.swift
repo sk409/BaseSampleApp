@@ -20,18 +20,20 @@ class SplashViewController: MvvmViewController<SplashViewModel> {
         }
     }
     
+    private let viewModelFactory: ViewModelFactory
     private let viewControllerFactory: ViewControllerFactory
     
     public init(
         viewModelFactor: ViewModelFactory,
         viewControllerFactory: ViewControllerFactory
     ) {
+        self.viewModelFactory = viewModelFactor
         self.viewControllerFactory = viewControllerFactory
 //        let pod = Bundle(for: SplashViewController.self)
 //        let path = pod.path(forResource: "Splash", ofType: "bundle")!
 //        let bundle = Bundle(path: path)
 //        super.init(nibName: "SplashViewController", bundle: bundle)
-        super.init(nibName: "SplashViewController", bundle: nil, viewModel: viewModelFactor.create(SplashViewModel.self))
+        super.init(nibName: "SplashViewController", bundle: nil)
     }
     
     required public init?(coder: NSCoder) {
@@ -39,6 +41,7 @@ class SplashViewController: MvvmViewController<SplashViewModel> {
     }
     
     public override func viewWillAppear(_ animated: Bool) {
+        viewModel = viewModelFactory.create(SplashViewModel.self)
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
     }

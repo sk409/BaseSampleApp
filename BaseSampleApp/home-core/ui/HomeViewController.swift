@@ -34,18 +34,20 @@ public class HomeViewController: MvvmViewController<HomeViewModel> {
     }
     
     public var slideMenuViewModel: SlideMenuViewModel?
-    
     private var slideMenuViewController: SlideMenuViewController?
+    
+    private let viewModelFactory: ViewModelFactory
     private let viewControllerFactory: ViewControllerFactory
     
     public init(viewModelFactory: ViewModelFactory, viewControllerFactory: ViewControllerFactory) {
         slideMenuViewModel = viewModelFactory.create(SlideMenuViewModel.self)
+        self.viewModelFactory = viewModelFactory
         self.viewControllerFactory = viewControllerFactory
 //        let pod = Bundle(for: TutorialViewController.self)
 //        let path = pod.path(forResource: "Tutorial", ofType: "bundle")!
 //        let bundle = Bundle(path: path)
 //        super.init(nibName: "TutorialViewController", bundle: bundle)
-        super.init(nibName: "HomeViewController", bundle: nil, viewModel:  viewModelFactory.create(HomeViewModel.self))
+        super.init(nibName: "HomeViewController", bundle: nil)
     }
     
     required public init?(coder: NSCoder) {
@@ -58,6 +60,7 @@ public class HomeViewController: MvvmViewController<HomeViewModel> {
     }
     
     public override func viewWillAppear(_ animated: Bool) {
+        viewModel = viewModelFactory.create(HomeViewModel.self)
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
     }

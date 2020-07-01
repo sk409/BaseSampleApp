@@ -27,8 +27,11 @@ public class EventDispatcher<ListenerType>: NSObject {
                 self.pendingEvents.removeAll()
             }
         }
-        lifecycleObserver.onViewDidDisappear = { _ in
+        lifecycleObserver.onViewDidDisappear = { [weak lifecycleOwner, weak lifecycleObserver] _ in
             self.currentListener = nil
+            guard let lifecycleOwner = lifecycleOwner, let lifecycleObserver = lifecycleObserver else {
+                return
+            }
             lifecycleOwner.lifecycle.removeObserver(lifecycleObserver)
         }
         lifecycleOwner.lifecycle.addObserver(lifecycleObserver)

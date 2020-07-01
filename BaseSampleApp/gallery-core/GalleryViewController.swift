@@ -2,6 +2,7 @@ import UIKit
 
 public class GalleryViewController: BackableViewController<GalleryActionsImpl, GalleryViewModel>, GalleryActions {
     
+    private let viewModelFactory: ViewModelFactory
     private let viewControllerFactory: ViewControllerFactory
     @IBOutlet private weak var label: UILabel!
     
@@ -9,12 +10,18 @@ public class GalleryViewController: BackableViewController<GalleryActionsImpl, G
             viewModelFactory: ViewModelFactory,
             viewControllerFactory: ViewControllerFactory
     ) {
+            self.viewModelFactory = viewModelFactory
             self.viewControllerFactory = viewControllerFactory
     //        let pod = Bundle(for: SplashViewController.self)
     //        let path = pod.path(forResource: "Splash", ofType: "bundle")!
     //        let bundle = Bundle(path: path)
     //        super.init(nibName: "SplashViewController", bundle: bundle)
-            super.init(nibName: "GalleryViewController", bundle: nil, viewModel: viewModelFactory.create(GalleryViewModel.self))
+            super.init(nibName: "GalleryViewController", bundle: nil)
+    }
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        viewModel = viewModelFactory.create(GalleryViewModel.self)
+        super.viewWillAppear(animated)
     }
     
     required public init?(coder: NSCoder) {
