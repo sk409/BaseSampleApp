@@ -15,13 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         appManager.setRootScreen(appDelegate: self)
         
-        if #available(iOS 13.0, *) {
-            // do nothing
-        } else {
-            window = UIWindow()
-            
-        }
-        
         return true
     }
 
