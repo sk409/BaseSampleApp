@@ -9,7 +9,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if let windowScene = (scene as? UIWindowScene) {
-            self.appManager.setRootScreen(sceneDelegate: self, windowScene: windowScene)
+            self.appManager.initialize(sceneDelegate: self, windowScene: windowScene)
         }
     }
 

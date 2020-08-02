@@ -68,7 +68,6 @@ public class HomeViewController: MvvmViewController<HomeViewModel> {
     public override func setupViewModel(_ viewModel: HomeViewModel?) {
         let homeActions = HomeActionsImpl(self)
         viewModel?.eventDispatcher.bind(lifecycleOwner: self, listener: homeActions)
-        viewModel?.start()
         
         let slideMenuActions = SlideMenuActionsImpl(self)
         slideMenuViewModel?.eventDispatcher.bind(lifecycleOwner: self, listener: slideMenuActions)

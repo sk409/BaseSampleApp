@@ -18,6 +18,11 @@ open class MvvmViewController<VM: ViewModel>: LifecycleObservableViewController 
         setupDataBinding()
     }
     
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel?.start()
+    }
+    
     open func setupViewModel(_ viewModel: VM?) {
         fatalError("This method must be overridden in sub class")
     }

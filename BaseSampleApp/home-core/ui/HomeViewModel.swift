@@ -18,7 +18,7 @@ public class HomeViewModel: ViewModel {
         super.init()
     }
     
-    public func start() {
+    public override func start() {
         let result = loadHomeUseCase.invoke()
         switch result {
         case .showSplashAction:

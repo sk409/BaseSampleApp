@@ -13,7 +13,7 @@ public class SplashViewModel: ViewModel {
         self.loadSplashUseCase = loadSplashUseCase
     }
     
-    public func start() {
+    public override func start() {
         DispatchQueue.global().async {
             let splashAction = self.loadSplashUseCase.invoke()
             switch splashAction {

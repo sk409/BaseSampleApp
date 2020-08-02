@@ -49,7 +49,6 @@ class SplashViewController: MvvmViewController<SplashViewModel> {
     public override func setupViewModel(_ viewModel: SplashViewModel?) {
         let actions = SplashActionsImpl(self)
         viewModel?.eventDispatcher.bind(lifecycleOwner: self, listener: actions)
-        viewModel?.start()
     }
     
     //============================================================
